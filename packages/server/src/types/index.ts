@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { z } from "zod";
 
-import type { AppRouter } from "../src/router";
+import type { AppRouter } from "../router";
 import type { inferRouterOutputs, inferRouterInputs } from "@trpc/server";
 
 type RouterOutput = inferRouterOutputs<AppRouter>;

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { trpc } from "@/utils/trpc";
-import { todoInputSchema } from "@repo/server/types";
+import { todoInputSchema } from "@repo/server/src/types";
 import { ZodError } from "zod";
 
 export function CreateTodo() {
@@ -41,18 +41,24 @@ export function CreateTodo() {
             // (so they don't overwrite our optimistic update)
             utils.todo.all.cancel();
 
-            // Snapshot the previous value
-            const previousTodos: any = utils.todo.all.getData();
-
             // Optimistically update to the new value
             const newTodo = { id: "1", text: todo, done: false };
-            const updatedTodos: any = [...previousTodos, newTodo];
+
+            // Snapshot the previous value
+            type TodoType = typeof newTodo
+            
+            const previousTodos = utils.todo.all.getData();
+
+
+
+            const updatedTodos = [...previousTodos, newTodo];
             utils.todo.all.setData(undefined, updatedTodos);
             setTodo(""); // Clear the input field on success
 
             return { ...previousTodos, newTodo };
           },
           onError: (error, newTodo, context) => {
+            console.log({newTodo, context});
             console.log("Input is invalid:", error.message);
             setTodo("");
             // utils.todo.all.setData(undefined, () => context.previousTodos);

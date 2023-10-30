@@ -25,6 +25,7 @@ export const createContextInner = async ({ auth }: AuthContextProps) => {
  * This is the actual context you'll use in your router
  * @link https://trpc.io/docs/context
  **/
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const createContext = async (opts: CreateNextContextOptions) => {
   return await createContextInner({ auth: "" }); // Remove getAuth
 };

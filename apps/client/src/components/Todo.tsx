@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { trpc } from "@/utils/trpc";
-import type { Todo } from "@repo/server/types";
+import type { Todo } from "@repo/server/src/types";
 
 interface TodoProps {
   todo: Todo;
@@ -11,7 +11,7 @@ interface TodoProps {
 const Todo: React.FC<TodoProps> = ({ todo }) => {
   const { id, text, done } = todo;
   const utils = trpc.useContext(); // Access the context at the component level
-  const deleteTodoApi = trpc.todo.deleteTodo.useMutation()
+  // const deleteTodoApi = trpc.todo.deleteTodo.useMutation()
   const toggleTodoApi = trpc.todo.toggleTodo.useMutation()
 
   // Use useState to manage checkbox state

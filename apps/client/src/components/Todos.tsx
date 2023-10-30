@@ -1,12 +1,15 @@
 "use client";
 
-import { trpc } from "@/utils/trpc";
 import React from "react";
+import { trpc } from "@/utils/trpc";
 
 import Todo from "./Todo";
 
 const Todos = () => {
-  const { data: todoList = [], isLoading, error } = trpc.todo.all.useQuery()
+
+
+  const { data: todoList = [], isLoading, error } = trpc.todo.all.useQuery();
+
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -19,7 +22,7 @@ const Todos = () => {
   return (
     <div>
       {todoList.length ? (
-        todoList.map((todo: any) => {
+        todoList.map((todo) => {
           return <Todo key={todo.id} todo={todo} />;
         })
       ) : (

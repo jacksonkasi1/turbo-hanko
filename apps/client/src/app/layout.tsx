@@ -19,9 +19,11 @@ export default function RootLayout({
   return (
     // <html lang="en">
     //   <body className={inter.className}>
-        <TRPCProvider>
-          {children}
-        </TRPCProvider>
+    <div>
+      <TRPCProvider>
+        {children}
+      </TRPCProvider>
+    </div>
     //   </body>
     // </html>
   )

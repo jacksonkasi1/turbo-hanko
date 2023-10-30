@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 
-import { CreateTodo } from "@/components/create-post";
+// import { CreateTodo } from "@/components/create-post";
 import Todos from "@/components/Todos";
+
 
 export default async function Home() {
 
@@ -35,17 +38,6 @@ export default async function Home() {
             </div>
           </Link>
         </div>
-        <div className="flex flex-col items-center gap-2">
-      
-
-          <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-center text-2xl text-white">
-           
-            </p>
-           
-          </div>
-        </div>
-
         <CrudShowcase />
       </div>
     </main>
@@ -56,12 +48,10 @@ async function CrudShowcase() {
   return (
     <div className="w-full max-w-xs">
       <Todos />
-
       <br />
       <hr />
       <br />
-
-      <CreateTodo />
+      {/* <CreateTodo /> */}
     </div>
   );
 }
