@@ -1,37 +1,17 @@
 "use client";
 
-import React, { useState } from 'react'
-import { transformer } from "@repo/server/transformer";
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { httpBatchLink } from '@trpc/client'
-
+import "@/styles/globals.css";
 import { trpc } from "@/utils/trpc";
 
-const Provider = ({ children }: { children: React.ReactNode }) => {
-
-
-    const [queryClient] = useState(() => new QueryClient())
-    const [trpcClient] = useState(() => {
-        return trpc.createClient({
-            transformer,
-            links: [
-                httpBatchLink({
-                    url: 'http://localhost:3000/api/trpc',
-                }),
-            ],
-        })
-    })
-
-    return (
-        <div>
-            <trpc.Provider queryClient={queryClient} client={trpcClient}>
-                <QueryClientProvider client={queryClient}>
-                    {children}
-                </QueryClientProvider>
-            </trpc.Provider>
-        </div>
-    )
+interface TRPCReactProviderProps {
+  children: React.ReactNode;
 }
 
-export default Provider
+const TRPCReactProvider: React.FC<TRPCReactProviderProps> = ({ children }) => {
+  return (
+    // Your app components can be wrapped here without ClerkProvider
+    {children}
+  );
+};
+
+export default trpc.withTRPC(TRPCReactProvider);

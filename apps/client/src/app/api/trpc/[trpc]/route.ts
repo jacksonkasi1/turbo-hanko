@@ -26,13 +26,15 @@
 
 import { appRouter } from "@repo/server";
 import { createContext } from "@repo/server";
-import { createNextApiHandler } from "@trpc/server/adapters/next";
-// import { NextApiResponse } from "next";
-// import { NextRequest } from "next/server";
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch"
 
-const handler = () =>createNextApiHandler({
-  router: appRouter,
-  createContext,
-})
+
+const handler = (req: Request) =>
+fetchRequestHandler({
+    endpoint: "/api/trpc",
+    req,
+    router: appRouter,
+    createContext: () => createContext({req}),
+  })
 
 export { handler as GET, handler as POST }
