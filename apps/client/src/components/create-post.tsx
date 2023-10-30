@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { trpc } from "@/utils/trpc";
-import { todoInputSchema } from "@repo/server/src/types";
+import { trpc } from "@/trpc/react";
+// import { todoInputSchema } from "@repo/server/src/types";
 import { ZodError } from "zod";
 
 export function CreateTodo() {
@@ -29,8 +29,8 @@ export function CreateTodo() {
 
     try {
       // Validate the input data using Zod schema
-      const validatedData = todoInputSchema.parse({ text: todo });
-      console.log("Input is valid:", validatedData);
+      // const validatedData = todoInputSchema.parse({ text: todo });
+      // console.log("Input is valid:", validatedData);
 
       // Trigger the createTodo mutation
       await createPost.mutate(
@@ -44,12 +44,7 @@ export function CreateTodo() {
             // Optimistically update to the new value
             const newTodo = { id: "1", text: todo, done: false };
 
-            // Snapshot the previous value
-            type TodoType = typeof newTodo
-            
             const previousTodos = utils.todo.all.getData();
-
-
 
             const updatedTodos = [...previousTodos, newTodo];
             utils.todo.all.setData(undefined, updatedTodos);

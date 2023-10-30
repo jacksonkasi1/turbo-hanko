@@ -1,7 +1,5 @@
 packages:
   - apps/client
-  - apps/todo
-  - apps/docs
   - packages/server
   - packages/db
   - packages/config/*

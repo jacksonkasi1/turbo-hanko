@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-// import { CreateTodo } from "@/components/create-post";
+import { CreateTodo } from "@/components/create-post";
 import Todos from "@/components/Todos";
 
 
@@ -51,7 +51,7 @@ async function CrudShowcase() {
       <br />
       <hr />
       <br />
-      {/* <CreateTodo /> */}
+      <CreateTodo />
     </div>
   );
 }

@@ -3,17 +3,10 @@ import { z } from "zod";
 import { todoInputSchema } from "../types";
 
 export const todoRouter = router({
-  all: publicProcedure.query( ({  }) => {
-    // const todos =  ctx.prisma.todo.findMany({});
-
-    // console.log({todos});
+  all: publicProcedure.query( ({ ctx }) => {
+    const todos =  ctx.prisma.todo.findMany({});
+    return todos
     
-    return [{
-        id: 1,
-        text: "Todo 1",
-        done: false,
-      }
-    ];
   }),
   createTodo: protectedProcedure
     .input(todoInputSchema)

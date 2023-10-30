@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { trpc } from "@/utils/trpc";
+import { trpc } from "@/trpc/react";
 
 import Todo from "./Todo";
 

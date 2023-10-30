@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { trpc } from "@/utils/trpc";
+import { trpc } from "@/trpc/react";
 import type { Todo } from "@repo/server/src/types";
 
 interface TodoProps {
@@ -11,7 +11,7 @@ interface TodoProps {
 const Todo: React.FC<TodoProps> = ({ todo }) => {
   const { id, text, done } = todo;
   const utils = trpc.useContext(); // Access the context at the component level
-  // const deleteTodoApi = trpc.todo.deleteTodo.useMutation()
+  const deleteTodoApi = trpc.todo.deleteTodo.useMutation()
   const toggleTodoApi = trpc.todo.toggleTodo.useMutation()
 
   // Use useState to manage checkbox state
@@ -28,9 +28,9 @@ const Todo: React.FC<TodoProps> = ({ todo }) => {
     utils.todo.all.invalidate();
   };
 
-  const deleteTodo = async () => {
+  const deleteTodo =  () => {
     try {
-      await toggleTodoApi.mutate({ id, done: false });
+      deleteTodoApi.mutate({ id });
       utils.todo.all.invalidate();
     } catch (error) {
       console.error("Failed to delete todo:", error);
