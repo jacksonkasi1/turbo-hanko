@@ -2,9 +2,15 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "clean": "rm -rf node_modules",
+    "clean:workspaces": "turbo clean",
+    "db-generate": "turbo db-generate",
+    "db-push": "turbo db-push",
+    "dev": "turbo dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "FIXME:lint": "turbo lint && manypkg check",
+    "type-check": "turbo type-check"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
@@ -13,9 +19,5 @@
     "turbo": "latest"
   },
   "name": "turbo-hanko",
-  "packageManager": "bun@1.0.3",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "packageManager": "pnpm@7.13.0"
 }
